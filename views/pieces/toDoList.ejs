@@ -1,0 +1,54 @@
+
+
+<!--<div class = "container">-->
+    <div id = "toDoListAll" class="panel panel-primary">
+        <div class="panel-heading">
+        <h3 class="text-center">To Do <span class = "glyphicon glyphicon-plus"></span></h3>
+        </div><!--panel heading end-->
+        <div class="panel-body">
+            <div id = "container">
+                        <form method = "POST" action ="/toDo">
+                            <input id = "toDoInput" type = "text" name ="item" placeholder = "New Item">
+                            <button id = "submitTodo" class ="pull-right"><span class = "glyphicon glyphicon-plus"></span></button>
+                        </form>
+                    <table class="table table-striped">
+                        <tbody>
+                            <% todoList.forEach(function(item){ %>
+                                <tr>
+                                <% if(item.completed == false) { %>
+                                        <td>
+                                            <form class = "trash" method ="POST" action ="/toDo/<%= item._id%>?_method=DELETE">
+                                                <button class = "btn btn-danger"><span class = "glyphicon glyphicon-trash"></span></button>
+                                            </form>
+                                             <span><%= item.item %></span>
+                                        </td>
+                                         <td>
+                                             <form class ="checkComplete text-right" method ="POST" action ="/toDo/<%= item._id%>?_method=PUT">
+                                                 <input type="hidden" name="todo[completed]" value = true >
+                                                 <button class = "completeCheck"><span class = "glyphicon glyphicon-ok" ></span></button>
+                                            </form>
+                                        </td>
+                                <% } else { %>
+                                        <td>
+                                            <form class = "trash" method ="POST" action ="/toDo/<%= item._id%>?_method=DELETE">
+                                                <button class = "btn btn-danger"><span class = "glyphicon glyphicon-trash"></span></button>
+                                            </form>
+                                             <span class = "completed"><%= item.item %></span>
+                                        </td>
+                                         <td>
+                                             <form class ="checkComplete  text-right" method ="POST" action ="/toDo/<%= item._id%>?_method=PUT">
+                                                 <input type="hidden" name="todo[completed]" value = false >
+                                                 <button class = "completeCheck"><span class = "glyphicon glyphicon-ok" ></span></button>
+                                            </form>
+                                        </td>
+                                <% } %>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div> <!--panel body end-->
+    </div><!--panel-default end-->
+
+<!--</div>-->
+

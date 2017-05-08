@@ -1,0 +1,19 @@
+
+
+
+<div id = "postItNote" class="panel panel-default">
+    <div class="panel-body">
+        
+        <form method = "POST" action ="/postIt">
+            <button id = "saveNote" class ="pull-right"><span class = "glyphicon glyphicon-plus"></span></button>
+             <% postItNote.forEach(function(note){ %>
+                <input id = "postNote" type = "text" name ="postIt[note]" placeholder = "new note">
+            <% }); %>
+            
+            
+            </form>   
+            <% postItNote.forEach(function(note){ %>
+                <text class="text-center"><%= note.text %></text>
+            <% }); %>
+     </div>
+</div>
